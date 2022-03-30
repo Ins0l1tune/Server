@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 1</title>
+</head>
+<body>
+    <ol>
+        <li>
+					<p>
+						Файлы из предоставленного каталога files через GIT добавляем в репозиторий:
+						<br><img src="0_1.png" alt="Скрин_1"><br>
+						<br><img src="0_2.png" alt="Скрин_2"><br>
+						<br><img src="0_3.png" alt="Скрин_3"><br>
+						Заходим в PuTTY, подключаемся к серверу добавляем к файлам из прошлого задания.<br>
+						Заливаем файлы из нашего репозитория на сервер:
+						<br><img src="0_s0.png" width="825" height="825" alt="Скрин_4"><br>
+						<br><img src="0_s1.png" alt="Скрин_5"><br>
+						<br><img src="0_s2.png" alt="Скрин_6"><br>
+						<br><img src="0_s3.png" alt="Скрин_7"><br>
+						Проверяем index.php:
+						<br><img src="0_s4.png" width="825" height="590" alt="Скрин_8"><br>
+					</p>
+        </li>
+				<li>
+					<p>
+						Заходим в PuTTY, подключаемся к серверу (тип соединения Raw, порт 80):
+						<br><img src="0_t.png" width="825" height="825" alt="Скрин_9"><br>
+						Получаем главную страницу методом GET в протоколе HTTP 1.0:
+						<br><img src="1.png" width="825" height="442" alt="Скрин_10"><br>
+					</p>
+				</li>
+				<li>
+					Получаем внутреннюю страницу методом GET* в протоколе HTTP 1.1:
+					<br><img src="2.png" width="825" height="442" alt="Скрин_11"><br>
+				</li>
+				<li>
+					Определяем размер файла file.tar.gz, не скачивая его при помощи метода HEAD:
+					<br><img src="3.png" alt="Скрин_12"><br>
+					{В поле Content-Length содержится размер в байтах}
+				</li>
+				<li>
+					Определяем медиатип ресурса /image.png при помощи метода HEAD:
+					<br><img src="4.png" alt="Скрин_13"><br>
+					{В поле Content-Type содержится медиатип ресурса}
+				</li>
+				<li>
+					Определяем комментарий на сервер по адресу /index.php при помощи метода POST.
+					<br><img src="5.png" alt="Скрин_14"><br>
+				</li>
+				<li>
+					Получаем первые 100 байт файла /file.tar.gz при помощи заголовка Range метода GET.
+					<br><img src="6.png" alt="Скрин_15"><br>
+				</li>
+				<li>
+					Определяем кодировку ресурса /index.php. при помощи метода GET. <br>
+					<br><img src="7.png" alt="Скрин_16"><br>
+					{В поле charset содержится тип кодировки}
+				</li>
+    </ol>
+		<a href="https://github.com/Ins0l1tune/Server"> (Cсылка на github) </a>.
+</body>
+</html>

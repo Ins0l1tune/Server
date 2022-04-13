@@ -14,8 +14,9 @@
 	<header>
 		<div class="container">
 			<img src="logo.svg" width="115" height="115" alt="Лого">
-			<p class="title">Прогресс <br>
-			<small class="title_sub">Научно-исследовательский институт </small></p>
+			<p class="title"> <b>Прогресс</b> <br>
+				<small class="title_sub">Научно-исследовательский институт </small>
+			</p>
 		</div>
 	</header>
 	<nav>
@@ -30,7 +31,7 @@
 	</nav>
 	<div class="container">
 		<h2>Заявка на сотрудничество</h2>
-		<form>
+		<form action="" method="POST">
 			<div class="form-field">
 				<label for="user-name">Имя</label>
 				<br />
@@ -44,28 +45,40 @@
 				<br />
 			</div>
 			<div class="form-field">
-				<label for="user-birth">Дата рождения</label>
-				<br />
-				<input type="date" name="user-birth" id="user-birth">
-				<br />
+				<label for="user-birth">Год рождения</label>
+				<select name="user-birth[]" class="select-dropdown">
+					<?php
+					$options = array();
+					for ($i = 1922; $i <= 2022; $i++) {
+						$options[] = $i;
+					}
+					foreach ($options as $option) {
+					?>
+						<option value=<?php echo $option; ?>>
+							<?php echo $option; ?>
+						</option>
+					<?php
+					}
+					?>
+				</select>
 			</div>
 			<div class="form-field">
 				<span>Пол:</span>
 				<br>
-				<input type="radio" checked="checked" name="user-male" id="user-male">
+				<input type="radio" checked="checked" name="gender" id="user-male">
 				<label for="user-male">Мужской</label>
-				<input type="radio" name="user-male" id="user-female">
+				<input type="radio" name="gender" id="user-female">
 				<label for="user-female">Женский</label>
 			</div>
 			<div class="form-field">
 				<span>Кол-во конечностей:</span>
 				<br>
-				<input type="radio" name="user-legs" id="user-legs-2">
-				<label for="user-legs-2">2</label>
-				<input type="radio" checked="checked" name="user-legs" id="user-legs-4">
-				<label for="user-legs-4">3</label>
-				<input type="radio" name="user-legs" id="user-legs-8">
-				<label for="user-legs-8">4</label>
+				<input type="radio" name="user-l" id="user-l-2">
+				<label for="user-l-2">2</label>
+				<input type="radio" checked="checked" name="user-l" id="user-l-4">
+				<label for="user-l-4">3</label>
+				<input type="radio" name="user-l" id="user-l-8">
+				<label for="user-l-8">4</label>
 			</div>
 			<div class="form-field">
 				<select multiple="superpowers">
@@ -80,7 +93,7 @@
 			<div class="form-field">
 				<span>Биография:</span>
 				<br>
-				<textarea></textarea>
+				<textarea name="bio" cols="30" rows="10" style="resize: none;"></textarea>
 			</div>
 			<div class="form-field">
 				<input type="checkbox" name="user-policy" id="user-policy">
@@ -97,4 +110,5 @@
 		</div>
 	</footer>
 </body>
+
 </html>

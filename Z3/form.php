@@ -75,10 +75,10 @@
 				<br>
 				<input type="radio" name="user-l" id="user-l-2">
 				<label for="user-l-2">2</label>
+				<input type="radio" name="user-l" id="user-l-3">
+				<label for="user-l-3">3</label>
 				<input type="radio" checked="checked" name="user-l" id="user-l-4">
-				<label for="user-l-4">3</label>
-				<input type="radio" name="user-l" id="user-l-8">
-				<label for="user-l-8">4</label>
+				<label for="user-l-4">4</label>
 			</div>
 			<div class="form-field">
 				<select multiple="superpowers">

@@ -31,7 +31,7 @@
 	</nav>
 	<div class="container">
 		<h2>Заявка на сотрудничество</h2>
-		<form action="" method="POST">
+		<form action="index.php" method="POST">
 			<div class="form-field">
 				<label for="user-name">Имя</label>
 				<br />
@@ -45,10 +45,10 @@
 				<br />
 			</div>
 			<div class="form-field">
-				<label for="user-birth">Год рождения</label>
+				<label>Год рождения</label>
 				<select name="year" class="select-dropdown">
 					<option value=""> год</option>
-					<script type="text/javascript">
+					<script> //<script type="text/javascript">
 						let y = 1922
 						while (y < 2022) {
 							y++
@@ -76,7 +76,7 @@
 				<label for="user-l-4">4</label>
 			</div>
 			<div class="form-field">
-				<select multiple="superpowers">
+				<select multiple size="4">
 					<option value="1">Бессмертие</option>
 					<option value="2">Прохождение сквозь стены</option>
 					<option value="3">Левитация</option>

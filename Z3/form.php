@@ -46,20 +46,15 @@
 			</div>
 			<div class="form-field">
 				<label for="user-birth">Год рождения</label>
-				<select name="user-birth[]" class="select-dropdown">
-					<?php
-					$options = array();
-					for ($i = 1922; $i <= 2022; $i++) {
-						$options[] = $i;
-					}
-					foreach ($options as $option) {
-					?>
-						<option value=<?php echo $option; ?>>
-							<?php echo $option; ?>
-						</option>
-					<?php
-					}
-					?>
+				<select name="year" class="select-dropdown">
+					<option value=""> год</option>
+					<script type="text/javascript">
+						let y = 1922
+						while (y < 2022) {
+							y++
+							document.getElementById('year').innerHTML += '<option>' + y + '</option>'
+						}
+					</script>
 				</select>
 			</div>
 			<div class="form-field">
@@ -100,7 +95,7 @@
 				<label for="user-policy">С <a href="#">контрактом</a> ознакомлен</label>
 			</div>
 			<div class="form-field">
-				<input type="submit" id="user-submit">
+				<input type="submit" id="user-submit" value="ok">
 			</div>
 		</form>
 	</div>

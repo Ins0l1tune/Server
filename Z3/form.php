@@ -48,7 +48,8 @@
 				<label>Год рождения</label>
 				<select name="year" class="select-dropdown">
 					<option value=""> год</option>
-					<script> //<script type="text/javascript">
+					<script>
+						//<script type="text/javascript">
 						let y = 1922
 						while (y < 2022) {
 							y++
@@ -76,7 +77,7 @@
 				<label for="user-l-4">4</label>
 			</div>
 			<div class="form-field">
-				<select multiple size="4">
+				<select multiple size="4" name="superpower">
 					<option value="1">Бессмертие</option>
 					<option value="2">Прохождение сквозь стены</option>
 					<option value="3">Левитация</option>

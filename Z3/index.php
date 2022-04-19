@@ -33,7 +33,6 @@ $errors = FALSE;
     $nameErr = "Укажите своё имя!";
     $errors = TRUE;
   } else {
-    $user_name = test_input($_POST["user-name"]);
     // Проверка, содержит ли имя только буквы и пробелы
     if (!preg_match("/^[a-яA-Я ]$/", $user_name)) {
       $nameErr = "Разрешена только кирилица и пробелы!";
@@ -46,7 +45,6 @@ $errors = FALSE;
     $emailErr = "Email обязателен!";
     $errors = TRUE;
   } else {
-    $email = test_input($_POST["user-email"]);
     // Проверка, правильно ли сформирован адрес электронной почты
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $emailErr = "Неверный формат электронной почты";
@@ -59,7 +57,6 @@ $errors = FALSE;
     $yErr = "Указание года рождения - обязательно!";
     $errors = TRUE;
   } else {
-    $year = test_input($_POST["year"]);
     // Проверка на иные символы в поле даты рождения
     if (!preg_match("/^\d+$/", $year)) {
       $yErr = "Попали посторонние символы";
@@ -86,9 +83,7 @@ $errors = FALSE;
   }
 
   if (empty($_POST["bio"])) {
-    $comment = "";
-  } else {
-    $comment = test_input($_POST["bio"]);
+    $comment = "-";
   }
 
   if ($errors) {

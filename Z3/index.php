@@ -88,12 +88,12 @@ $errors = FALSE;
 
   if ($errors) {
     // При наличии ошибок - выводим их и завершаем работу скрипта.
-    print('Error : ' . $nameErr->getMessage());
-    print('Error : ' . $emailErr->getMessage());
-    print('Error : ' . $yErr->getMessage());
-    print('Error : ' . $genderErr->getMessage());
-    print('Error : ' . $lErr->getMessage());
-    print('Error : ' . $SPErr->getMessage());
+    print('Error : ' . $nameErr);
+    print('Error : ' . $emailErr);
+    print('Error : ' . $yErr);
+    print('Error : ' . $genderErr);
+    print('Error : ' . $lErr);
+    print('Error : ' . $SPErr);
     exit();
   }
 

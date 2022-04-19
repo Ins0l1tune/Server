@@ -46,16 +46,15 @@
 			</div>
 			<div class="form-field">
 				<label>Год рождения</label>
-				<select name="year" class="select-dropdown">
-					<option value=""> год</option>
-					<script>
-						//<script type="text/javascript">
-						let y = 1922
-						while (y < 2022) {
-							y++
-							document.getElementById('year').innerHTML += '<option>' + y + '</option>'
-						}
-					</script>
+				<?php // устанавливаем первый и последний год диапазона 
+				$yearArray = range(1920, 2050); 
+				?> 
+				<select name="year" class="select-dropdown"> 
+					<option value="">Выберите год</option> 
+					<?php 
+					foreach ($yearArray as $year) { 
+							echo '<option '.$selected.' value="'.$year.'">'.$year.'</option>'; } 
+					?> 
 				</select>
 			</div>
 			<div class="form-field">

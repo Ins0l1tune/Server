@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Переменные формы:
 $user_name = $_POST['user-name'];
-$usere_mail = $_POST['user-email'];
+$usere_mail = strtolower($_POST['user-email']);
 $year = $_POST['year'];
 $gender = $_POST['gender'];
 $user_l = $_POST['user-l'];
@@ -34,8 +34,8 @@ $errors = FALSE;
     $errors = TRUE;
   } else {
     // Проверка, содержит ли имя только буквы и пробелы
-    if (!preg_match("/^[a-яA-Я ]$/", $user_name)) {
-      $nameErr = "Разрешена только кирилица и пробелы!";
+    if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $user_name)) {
+      $nameErr = "Разрешена только буквенные символы!";
       $errors = TRUE;
     }
   }
@@ -46,19 +46,19 @@ $errors = FALSE;
     $errors = TRUE;
   } else {
     // Проверка, правильно ли сформирован адрес электронной почты
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $email)) {
       $emailErr = "Неверный формат электронной почты";
       $errors = TRUE;
     }
   }
 
-  if (empty($_POST["year"])) {
+  if (empty($_POST["year"])) 
     // Проверка, на пустоту поля
     $yErr = "Указание года рождения - обязательно!";
     $errors = TRUE;
   } else {
     // Проверка на иные символы в поле даты рождения
-    if (!preg_match("/^\d+$/", $year)) {
+    if (!preg_match('/\d+/', $year)) {
       $yErr = "Попали посторонние символы";
       $errors = TRUE;
     }

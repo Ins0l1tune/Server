@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Переменные формы:
 $user_name = $_POST['user-name'];
-$usere_mail = strtolower($_POST['user-email']);
+$usere_mail = $_POST['user-email'];
 $year = $_POST['year'];
 $gender = $_POST['gender'];
 $user_l = $_POST['user-l'];
@@ -116,3 +116,5 @@ catch(PDOException $e){
   exit();
 }
 }
+
+//$назв.пер. = strtolower($_POST['что-то']); преобразование стр. в нижний регистр

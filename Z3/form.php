@@ -47,14 +47,15 @@
 			<div class="form-field">
 				<label>Год рождения</label>
 				<?php // устанавливаем первый и последний год диапазона 
-				$yearArray = range(1920, 2050); 
-				?> 
-				<select name="year" class="select-dropdown"> 
-					<option value="">Выберите год</option> 
-					<?php 
-					foreach ($yearArray as $year) { 
-							echo '<option '.$selected.' value="'.$year.'">'.$year.'</option>'; } 
-					?> 
+				$yearArray = range(1920, 2050);
+				?>
+				<select name="year" class="select-dropdown">
+					<option value="">Выберите год</option>
+					<?php
+					foreach ($yearArray as $year) {
+						echo '<option ' . $selected . ' value="' . $year . '">' . $year . '</option>';
+					}
+					?>
 				</select>
 			</div>
 			<div class="form-field">
@@ -76,13 +77,13 @@
 				<label for="user-l-4">4</label>
 			</div>
 			<div class="form-field">
-				<select multiple size="4" name="superpower">
-					<option value="1">Бессмертие</option>
-					<option value="2">Прохождение сквозь стены</option>
-					<option value="3">Левитация</option>
-					<option value="4">Невидимость</option>
-					<option value="5">Пирокинез</option>
-					<option value="0">Нет/Нет в списке</option>
+				<select multiple size="4" name="superpower[]" class="select-list">
+					<option value="Бессмертие">Бессмертие</option>
+					<option value="Прохождение сквозь стены">Прохождение сквозь стены</option>
+					<option value="Левитация">Левитация</option>
+					<option value="Невидимость">Невидимость</option>
+					<option value="Пирокинез">Пирокинез</option>
+					<option value="Нет/Нет в списке">Нет/Нет в списке</option>
 				</select>
 			</div>
 			<div class="form-field">

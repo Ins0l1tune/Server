@@ -44,7 +44,9 @@ $errors = FALSE;
     // Проверка, на пустоту поля
     $emailErr = "Email обязателен!";
     $errors = TRUE;
-  } else {
+  } 
+  else 
+  {
     // Проверка, правильно ли сформирован адрес электронной почты
     if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $email)) {
       $emailErr = "Неверный формат электронной почты";
@@ -52,17 +54,20 @@ $errors = FALSE;
     }
   }
 
-  if (empty($_POST["year"])) 
+  if (empty($_POST["year"])) {
     // Проверка, на пустоту поля
     $yErr = "Указание года рождения - обязательно!";
     $errors = TRUE;
-  } else {
+  }
+  else
+  {
     // Проверка на иные символы в поле даты рождения
     if (!preg_match('/\d+/', $year)) {
       $yErr = "Попали посторонние символы";
       $errors = TRUE;
     }
   }
+
 
   if (empty($_POST["gender"])) {
     // Проверка, на пустоту поля

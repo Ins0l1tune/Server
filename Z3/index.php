@@ -27,43 +27,47 @@ $user_l = $_POST['user-l'];
 $superpowers = implode(',', $_POST['superpower']);
 $bio = $_POST['bio'];
 
+$Err = [1, 2, 3, 4, 5, 6];
+for ($i=1; $i<count($Err); $i++) {
+  $Err[$i]="";
+}
 $errors = FALSE;
   // Проверка, на пустоту поля
   if (empty($_POST["user-name"])) {
-    $nameErr = "Укажите своё имя!";
+    $Err1 = "Укажите своё имя!";
     $errors = TRUE;
   } else {
     // Проверка, содержит ли имя только буквы и пробелы
     if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $user_name)) {
-      $nameErr = "Разрешена только буквенные символы!";
+      $Err1 = "Разрешена только буквенные символы!";
       $errors = TRUE;
     }
   }
 
   if (empty($_POST["user-email"])) {
     // Проверка, на пустоту поля
-    $emailErr = "Email обязателен!";
+    $Err2 = "Email обязателен!";
     $errors = TRUE;
   } 
   else 
   {
     // Проверка, правильно ли сформирован адрес электронной почты
-    if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $email)) {
-      $emailErr = "Неверный формат электронной почты";
+    if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $usere_mail)) {
+      $Err2 = "Неверный формат электронной почты";
       $errors = TRUE;
     }
   }
 
   if (empty($_POST["year"])) {
     // Проверка, на пустоту поля
-    $yErr = "Указание года рождения - обязательно!";
+    $Err3 = "Указание года рождения - обязательно!";
     $errors = TRUE;
   }
   else
   {
     // Проверка на иные символы в поле даты рождения
     if (!preg_match('/\d+/', $year)) {
-      $yErr = "Попали посторонние символы";
+      $Err3 = "Попали посторонние символы";
       $errors = TRUE;
     }
   }
@@ -71,19 +75,19 @@ $errors = FALSE;
 
   if (empty($_POST["gender"])) {
     // Проверка, на пустоту поля
-    $genderErr = "Пол обязателен";
+    $Err4 = "Пол обязателен";
     $errors = TRUE;
   }
 
   if (empty($_POST["user-l"])) {
     // Проверка, на пустоту поля
-    $lErr = "Выбор обязателен! Если у вас отсутствуют конечности, тогда вы нам не подходите.";
+    $Err5 = "Выбор обязателен! Если у вас отсутствуют конечности, тогда вы нам не подходите.";
     $errors = TRUE;
   }
 
   if (empty($_POST["superpowers"])) {
     // Проверка, на пустоту поля
-    $SPErr = "Выбор из предложенного списка обязателен";
+    $Err6 = "Выбор из предложенного списка обязателен";
     $errors = TRUE;
   }
 
@@ -93,12 +97,9 @@ $errors = FALSE;
 
   if ($errors) {
     // При наличии ошибок - выводим их и завершаем работу скрипта.
-    print('Error : ' . $nameErr);
-    print('Error : ' . $emailErr);
-    print('Error : ' . $yErr);
-    print('Error : ' . $genderErr);
-    print('Error : ' . $lErr);
-    print('Error : ' . $SPErr);
+    for ($i = 1; $i < count($Err); $i++) {
+      print('[00'. [$i] . ']' . $Err[$i]);
+    }
     exit();
   }
 

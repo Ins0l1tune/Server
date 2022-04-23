@@ -35,13 +35,13 @@
 			<div class="form-field">
 				<label for="user-name">Имя</label>
 				<br />
-				<input type="text" name="user-name" id="user-name">
+				<input type="text" name="user_name" id="user-name">
 				<br />
 			</div>
 			<div class="form-field">
 				<label for="user-email">E-mail</label>
 				<br />
-				<input type="email" name="user-email" id="user-email">
+				<input type="email" name="user_email" id="user-email">
 				<br />
 			</div>
 			<div class="form-field">
@@ -69,11 +69,11 @@
 			<div class="form-field">
 				<span>Кол-во конечностей:</span>
 				<br>
-				<input type="radio" name="user-l" id="user-l-2">
+				<input type="radio" name="userl" id="user-l-2">
 				<label for="user-l-2">2</label>
-				<input type="radio" name="user-l" id="user-l-3">
+				<input type="radio" name="userl" id="user-l-3">
 				<label for="user-l-3">3</label>
-				<input type="radio" checked="checked" name="user-l" id="user-l-4">
+				<input type="radio" checked="checked" name="userl" id="user-l-4">
 				<label for="user-l-4">4</label>
 			</div>
 			<div class="form-field">

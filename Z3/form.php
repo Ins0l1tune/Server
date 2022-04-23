@@ -77,7 +77,7 @@
 				<label for="user-l-4">4</label>
 			</div>
 			<div class="form-field">
-				<select multiple size="4" name="superpower[]" class="select-list">
+				<select multiple size="4" name="superpower" class="select-list">
 					<option value="Бессмертие">Бессмертие</option>
 					<option value="Прохождение сквозь стены">Прохождение сквозь стены</option>
 					<option value="Левитация">Левитация</option>

@@ -24,7 +24,7 @@ $usere_mail = strtolower($_POST['user_email']);
 $year = $_POST['year'];
 $gender = $_POST['gender'];
 $user_l = $_POST['userl'];
-$superpowers = implode(',', $_POST['superpower[]']);
+$superpowers = implode(',', $_POST['superpower']);
 $bio = $_POST['bio'];
 
 $Err = [1, 2, 3, 4, 5, 6];
@@ -85,7 +85,7 @@ $errors = FALSE;
     $errors = TRUE;
   }
 
-  if (empty($_POST["superpower[]"])) {
+  if (empty($_POST["superpower"])) {
     // Проверка, на пустоту поля
     $Err6 = "[060] Выбор из предложенного списка обязателен";
     $errors = TRUE;
@@ -111,8 +111,8 @@ try {
 	$db = new PDO('mysql:host=localhost;dbname=u47480', $user,$pass, array(PDO::ATTR_PERSISTENT => true));
   $db->exec("setnames utf8");
 
-  $stmt = $db->prepare("INSERT INTO form (user_name, user_mail, user_birt, gender, user_l, superpowers, bio) VALUES (:user_name, :user_mail, :user_birt, :gender, :user_l, :superpowers, :bio);");
-  $stmt -> execute(['use_-name' => $user_name,'user_email' => $user_email, 'year' => $user_birth,'gender' => $gender,'userl' => $user_l,'superpower[]' => $superpowers,'bio' => $bio]);
+  $stmt = $db->prepare("INSERT INTO form (user_name, user_mail, user_birt, gender, user_l, superpowers, bio) VALUES (:user_name, :user_email, :year, :gender, :userl, :superpower, :bio);");
+  $stmt -> execute(['user_name' => $user_name,'user_email' => $user_email, 'year' => $user_birth,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены." . $id;
 }

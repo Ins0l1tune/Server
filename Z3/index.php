@@ -52,7 +52,7 @@ $errors = FALSE;
   else 
   {
     // Проверка, правильно ли сформирован адрес электронной почты
-    if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $usere_mail)) {
+    if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $user_email)) {
       $Err2 = "[021] Неверный формат электронной почты";
       $errors = TRUE;
     }

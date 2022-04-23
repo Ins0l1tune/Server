@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Переменные формы:
 $user_name = $_POST['user_name'];
-$usere_mail = strtolower($_POST['user_email']);
+$user_email = strtolower($_POST['user_email']);
 $year = $_POST['year'];
 $gender = $_POST['gender'];
 $user_l = $_POST['userl'];
@@ -112,7 +112,7 @@ try {
   $db->exec("setnames utf8");
 
   $stmt = $db->prepare("INSERT INTO clientinfo (user_name, user_email, year, gender, userl, superpower, bio) VALUES (:user_name, :user_email, :year, :gender, :userl, :superpower, :bio);");
-  $stmt -> execute(['user_name' => $user_name,'user_email' => $user_email, 'year' => $user_birth,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
+  $stmt -> execute(['user_name' => $user_name,'user_email' => $user_email, 'year' => $year,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены." . $id;
 }
@@ -122,5 +122,3 @@ catch(PDOException $e){
   exit();
 }
 }
-
-//$назв.пер. = strtolower($_POST['что-то']); преобразование стр. в нижний регистр

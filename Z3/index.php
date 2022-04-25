@@ -27,7 +27,7 @@ $user_l = $_POST['userl'];
 $superpowers = implode(',', $_POST['superpower']);
 $bio = $_POST['bio'];
 
-$Err = [1, 2, 3, 4, 5, 6];
+$Err = [1, 2, 3, 4, 5, 6, 7];
 for ($i=1; $i<count($Err); $i++) {
   $Err[$i]="";
 }
@@ -92,7 +92,9 @@ $errors = FALSE;
   }
 
   if (empty($_POST["bio"])) {
-    $comment = "-";
+    // Проверка, на пустоту поля
+    $Err6 = "[070] Нам важно знать вашу биографию";
+    $errors = TRUE;
   }
 
   if ($errors) {
@@ -108,10 +110,10 @@ $user = 'u47480'; $pass = '6816416';
 
 try {
 	//Подключение к базе данных. Подготовленный запрос. Не именованные метки.
-	$db = new PDO('mysql:host=localhost;dbname=u47480', $user,$pass, array(PDO::ATTR_PERSISTENT => true));
+	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
   $db->exec("setnames utf8");
 
-  $stmt = $db->prepare("INSERT INTO clientinfo (user_name, user_email, year, gender, userl, superpower, bio) VALUES (:user_name, :user_email, :year, :gender, :userl, :superpower, :bio);");
+  $stmt = $db->prepare("INSERT INTO 'clientinfo' ('user_name', 'user_email', 'year', 'gender', 'userl', 'superpower', 'bio') VALUES ('$user_name', '$user_email,'$year','$gender', '$userl', '$superpower','$bio');");
   $stmt -> execute(['user_name' => $user_name,'user_email' => $user_email, 'year' => $year,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены." . $id;

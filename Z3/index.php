@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Переменные формы:
-$user_name = $_POST['user_name'];
+$user_name = $_POST['username'];
 $user_email = strtolower($_POST['user_email']);
-$year = $_POST['year'];
+$year = $_POST['years'];
 $gender = $_POST['gender'];
 $user_l = $_POST['userl'];
 $superpowers = implode(',', $_POST['superpower']);
@@ -33,7 +33,7 @@ for ($i=1; $i<count($Err); $i++) {
 }
 $errors = FALSE;
   // Проверка, на пустоту поля
-  if (empty($_POST["user_name"])) {
+  if (empty($_POST["username"])) {
     $Err1 = "[010] Укажите своё имя!";
     $errors = TRUE;
   } else {
@@ -58,7 +58,7 @@ $errors = FALSE;
     }
   }
 
-  if (empty($_POST["year"])) {
+  if (empty($_POST["years"])) {
     // Проверка, на пустоту поля
     $Err3 = "[030] Указание года рождения - обязательно!";
     $errors = TRUE;
@@ -113,8 +113,8 @@ try {
 	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
   $db->exec("setnames utf8");
 
-  $stmt = $db->prepare("INSERT INTO 'clientinfo' ('user_name', 'user_email', 'year', 'gender', 'userl', 'superpower', 'bio') VALUES ('$user_name', '$user_email,'$year','$gender', '$userl', '$superpower','$bio');");
-  $stmt -> execute(['user_name' => $user_name,'user_email' => $user_email, 'year' => $year,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
+  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username, :user_email,:years,:gender, :userl, :superpower,:bio);");
+  $stmt -> execute(['username' => $user_name,'user_email' => $user_email, 'years' => $year,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены." . $id;
 }

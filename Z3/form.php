@@ -35,7 +35,7 @@
 			<div class="form-field">
 				<label for="user-name">Имя</label>
 				<br />
-				<input type="text" name="user_name" id="user-name">
+				<input type="text" name="username" id="user-name">
 				<br />
 			</div>
 			<div class="form-field">
@@ -49,7 +49,7 @@
 				<?php // устанавливаем первый и последний год диапазона 
 				$yearArray = range(1920, 2050);
 				?>
-				<select name="year" class="select-dropdown">
+				<select name="years" class="select-dropdown">
 					<option value="">Выберите год</option>
 					<?php
 					foreach ($yearArray as $year) {

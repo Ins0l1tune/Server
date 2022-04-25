@@ -113,7 +113,7 @@ try {
 	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
   $db->exec("setnames utf8");
 
-  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username, :user_email,:years,:gender, :userl, :superpower,:bio);");
+  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username), (:user_email), (:years), (:gender), (:userl), (:superpower), (:bio));");
   $stmt -> execute(['username' => $user_name,'user_email' => $user_email, 'years' => $year,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены." . $id;

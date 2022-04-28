@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   exit();
 }
 
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Переменные формы:
 $user_name = $_POST['username'];
 $user_email = strtolower($_POST['user_email']);
@@ -27,9 +27,9 @@ $user_l = $_POST['userl'];
 $superpowers = implode(',', $_POST['superpower']);
 $bio = $_POST['bio'];
 
-$Err = array();
-for ($i=1; $i<7; $i++) {
-  $Err[$i]="";
+$Err = [1,2,3,4,5,6,7];
+for ($i=1; $i< count($Err); $i++) {
+  $Err[$i]="-";
 }
 $errors = FALSE;
   // Проверка, на пустоту поля
@@ -123,4 +123,4 @@ catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   exit();
 }
-//}
+}

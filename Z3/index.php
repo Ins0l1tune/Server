@@ -100,7 +100,7 @@ $errors = FALSE;
   if ($errors) {
     // При наличии ошибок - выводим их и завершаем работу скрипта.
     for ($i = 1; $i < count($Err); $i++) {
-      print $Err[$i];
+      print $Err[$i]. " <br />";
     }
     exit();
   }

@@ -27,8 +27,8 @@ $user_l = $_POST['userl'];
 $superpowers = implode(',', $_POST['superpower']);
 $bio = $_POST['bio'];
 
-$Err = [1, 2, 3, 4, 5, 6, 7];
-for ($i=1; $i<count($Err); $i++) {
+$Err = array();
+for ($i=1; $i<7; $i++) {
   $Err[$i]="";
 }
 $errors = FALSE;
@@ -39,7 +39,7 @@ $errors = FALSE;
   } else {
     // Проверка, содержит ли имя только буквы и пробелы
     if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $user_name)) {
-      $Err[1] = "[011] Разрешена только буквенные символы!";
+      $Err[1] = "[011] Разрешены только буквенные символы!";
       $errors = TRUE;
     }
   }

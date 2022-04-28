@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Переменные формы:
 $user_name = $_POST['username'];
 $user_email = strtolower($_POST['user_email']);
@@ -123,4 +123,4 @@ catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   exit();
 }
-}
+//}

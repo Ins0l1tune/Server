@@ -110,7 +110,7 @@ $user = 'u47480'; $pass = '6816416';
 
 try {
 	//Подключение к базе данных. Подготовленный запрос. Не именованные метки.
-	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+	$db = new PDO('mysql:dbname=u47480;host=localhost', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
   $db->exec("setnames utf8");
 
   $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username, :user_email, :years, :gender, :userl, :superpower, :bio);");

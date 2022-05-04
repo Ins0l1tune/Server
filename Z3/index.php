@@ -112,11 +112,10 @@ try {
 	//Подключение к базе данных. Подготовленный запрос. Не именованные метки.
 	$db = new PDO('mysql:dbname=u47480;host=localhost', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
   $db->exec("setnames utf8");
-
   $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username, :user_email, :years, :gender, :userl, :superpower, :bio)");
   $stmt -> execute(['username' => $user_name,'user_email' => $user_email, 'years' => $year,'gender' => $gender,'userl' => $user_l,'superpower' => $superpowers,'bio' => $bio]);
   $id = $db->lastInsertId();
-  echo "Данные успешно сохранены." . $id;
+  echo "Данные успешно сохранены. ID:" . $id;
 }
 catch(PDOException $e){
   //Если есть ошибка соединения, выводим её:

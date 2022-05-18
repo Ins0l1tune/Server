@@ -38,7 +38,7 @@ $errors = FALSE;
     $errors = TRUE;
   } else {
     // Проверка, содержит ли имя только буквы и пробелы
-    if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $user_name)) {
+    if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $username)) {
       $Err[1] = "[011] Разрешены только буквенные символы!";
       $errors = TRUE;
     }

@@ -111,23 +111,8 @@ $user = 'u47480'; $pass = '6816416';
 try {
 	//Подключение к базе данных. Подготовленный запрос. Не именованные метки.
 	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username, :user_email, :years, :gender, :userl, :superpower, :bio)");
-  $stmt -> bindParam(':username',$user_name);
-  $stmt -> bindParam(':user_email',$user_email);
-  $stmt -> bindParam(':years',$year);
-  $stmt->bindParam(':gender',$gender);
-  $stmt->bindParam(':userl',$user_l);
-  $stmt->bindParam(':superpower',$superpowers);
-  $stmt->bindParam(':bio',$bio);
-
-  $user_name = $_POST['username'];
-  $user_email = strtolower($_POST['user_email']);
-  $year = $_POST['years'];
-  $gender = $_POST['gender'];
-  $user_l = $_POST['userl'];
-  $superpowers = implode(',', $_POST['superpower']);
-  $bio = $_POST['bio'];
-  $stmt->execute();
+  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) SET username=?, user_email=?, years=?, gender=?, userl=?, superpower=?, bio=?");
+  $stmt1->execute([$_POST['username'], strtolower($_POST['user_email']), $_POST['years'], $_POST['gender'], $_POST['userl'], implode(',', $_POST['superpower']), $_POST['bio']]);
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены. ID:" . $id;
 }

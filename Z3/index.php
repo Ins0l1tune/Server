@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //Переменные формы:
-$user_name = $_POST['username'];
+$username = $_POST['username'];
 $user_email = strtolower($_POST['user_email']);
-$year = $_POST['years'];
+$years = $_POST['years'];
 $gender = $_POST['gender'];
-$user_l = $_POST['userl'];
+$userl = $_POST['userl'];
 $superpowers = implode(',', $_POST['superpower']);
 $bio = $_POST['bio'];
 
@@ -66,7 +66,7 @@ $errors = FALSE;
   else
   {
     // Проверка на иные символы в поле даты рождения
-    if (!preg_match('/\d+/', $year)) {
+    if (!preg_match('/\d+/', $years)) {
       $Err[3] = "[031] Попали посторонние символы";
       $errors = TRUE;
     }
@@ -111,8 +111,9 @@ $user = 'u47480'; $pass = '6816416';
 try {
 	//Подключение к базе данных. Подготовленный запрос. Не именованные метки.
 	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-  $stmt = $db->prepare("INSERT INTO clientinfo (id, username, user_email, years, gender, userl, superpower, bio) SET id=?, username=?, user_email=?, years=?, gender=?, userl=?, superpower=?, bio=?");
-  $stmt->execute([NULL,$_POST['username'], strtolower($_POST['user_email']), $_POST['years'], $_POST['gender'], $_POST['userl'], implode(',', $_POST['superpower']), $_POST['bio']]);
+  $data = array('username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'superpower' => $superpower, 'bio' => $bio);
+  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) values(:username, :user_email, :years, :gender, :userl, :superpower, :bio)");
+  $stmt->execute($data);
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены. ID:" . $id;
 }

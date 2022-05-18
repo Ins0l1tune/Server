@@ -110,10 +110,12 @@ $user = 'u47480'; $pass = '6816416';
 
 try {
 	//Подключение к базе данных. Подготовленный запрос. Не именованные метки.
-	$db = mysqli_connect('localhost', $user, 'u47480', $pass);
-  $req_t = "INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) values('$username', '$user_email', '$years', '$gender', '$userl', '$superpower', '$bio');";
-  $res_t = mysqli_query($db, $req_t);
-  if ($res_t) {echo "Данные успешно сохранены.";}
+	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+  $data = array('username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'superpower' => $superpower, 'bio' => $bio);
+  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) values(:username, :user_email, :years, :gender, :userl, :superpower, :bio)");
+  $stmt->execute($data);
+  $id = $db->lastInsertId();
+  echo "Данные успешно сохранены. ID:" . $id;
 }
 catch(PDOException $e){
   //Если есть ошибка соединения, выводим её:

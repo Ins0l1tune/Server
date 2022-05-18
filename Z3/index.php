@@ -24,7 +24,7 @@ $user_email = strtolower($_POST['user_email']);
 $years = $_POST['years'];
 $gender = $_POST['gender'];
 $userl = $_POST['userl'];
-$superpowers = implode(',', $_POST['superpower']);
+$superpower = implode(',', $_POST['superpower']);
 $bio = $_POST['bio'];
 
 $Err = [1,2,3,4,5,6,7];

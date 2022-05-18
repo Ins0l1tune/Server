@@ -119,7 +119,14 @@ try {
   $stmt->bindParam(':userl',$user_l);
   $stmt->bindParam(':superpower',$superpowers);
   $stmt->bindParam(':bio',$bio);
-  
+
+  $user_name = $_POST['username'];
+  $user_email = strtolower($_POST['user_email']);
+  $year = $_POST['years'];
+  $gender = $_POST['gender'];
+  $user_l = $_POST['userl'];
+  $superpowers = implode(',', $_POST['superpower']);
+  $bio = $_POST['bio'];
   $stmt->execute();
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены. ID:" . $id;

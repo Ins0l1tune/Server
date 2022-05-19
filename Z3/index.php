@@ -111,8 +111,8 @@ $user = 'u47480'; $pass = '6816416';
 try {
 	//Подключение к базе данных. Подготовленный запрос. Не именованные метки.
 	$db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) SET 'username' = :username, 'user_email' = :user_email, 'years' = :years, 'gender' = :gender, 'userl' = :userl, 'superpower' = :superpower, 'bio' = :bio");
-  $stmt->execute(array('username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'superpower' => $superpower, 'bio' => $bio));
+  $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) SET username = ?, user_email = ?, years = ?, gender = ?, userl = ?, superpower = ?, bio = ?");
+  $stmt->execute([$username], [$user_email], [$years], [$gender], [$userl], [$superpower], [$bio]);
   print_r($stmt->errorInfo());
   $id = $db->lastInsertId();
   echo "Данные успешно сохранены. ID:" . $id;

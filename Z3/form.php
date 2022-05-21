@@ -46,12 +46,13 @@
 			</div>
 			<div class="form-field">
 				<label>Год рождения</label>
-				<?php // устанавливаем первый и последний год диапазона 
+				<?php // Устанавливаем первый и последний год диапазона:
 				$yearArray = range(1920, 2050);
 				?>
 				<select name="years" class="select-dropdown">
 					<option value="">Выберите год</option>
 					<?php
+					//Перебора массива (создаются пункты списка (года с 1920 по 2050)):
 					foreach ($yearArray as $year) {
 						echo '<option ' . $selected . ' value="' . $year . '">' . $year . '</option>';
 					}

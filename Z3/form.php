@@ -61,19 +61,19 @@
 			<div class="form-field">
 				<span>Пол:</span>
 				<br>
-				<input type="radio" checked="checked" name="gender" id="user-male">
+				<input type="radio" checked="checked" name="gender" id="user-male" value="М">
 				<label for="user-male">Мужской</label>
-				<input type="radio" name="gender" id="user-female">
+				<input type="radio" name="gender" id="user-female" value="Ж">
 				<label for="user-female">Женский</label>
 			</div>
 			<div class="form-field">
 				<span>Кол-во конечностей:</span>
 				<br>
-				<input type="radio" name="userl" id="user-l-2">
+				<input type="radio" name="userl" id="user-l-2" value="2">
 				<label for="user-l-2">2</label>
-				<input type="radio" name="userl" id="user-l-3">
+				<input type="radio" name="userl" id="user-l-3" value="3">
 				<label for="user-l-3">3</label>
-				<input type="radio" checked="checked" name="userl" id="user-l-4">
+				<input type="radio" checked="checked" name="userl" id="user-l-4" value="4">
 				<label for="user-l-4">4</label>
 			</div>
 			<div class="form-field">
@@ -83,7 +83,7 @@
 					<option value="Левитация">Левитация</option>
 					<option value="Невидимость">Невидимость</option>
 					<option value="Пирокинез">Пирокинез</option>
-					<option value="Нет/Нет в списке">Нет/Нет в списке</option>
+					<option value="Нет в списке">Нет в списке</option>
 				</select>
 			</div>
 			<div class="form-field">

@@ -36,26 +36,29 @@
       <div class="form-field">
         <label for="user-name">Имя</label>
         <br />
-        <input type="text" name="username" id="user-name"
-        <?php if ($errors['username']) {print 'class="error"';} ?> 
+        <input type="text" name="username" id="user-name" <?php if ($errors['username']) {print 'class="error"';} ?> 
         value="<?php print $errors['username'] ? $messages['username'] : $values['username']; ?>" />
         <br />
       </div>
       <div class="form-field">
         <label for="user-email">E-mail</label>
         <br />
-        <input type="email" name="user_email" id="user-email" 
-        <?php if ($errors['user_email']) {print 'class="error"';} ?> 
+        <input type="email" name="user_email" id="user-email" <?php if ($errors['user_email']) {print 'class="error"';} ?> 
         value="<?php print $errors['user_email'] ? $messages['user_email'] : $values['user_email']; ?>" />
         <br />
       </div>
       <div class="form-field">
-        <label>Год рождения</label>
+        <label>Год рождения
+          <p <?php if ($errors['years']) {print 'class="error"';} ?>>
+            <?php if ($messages['years']) print $messages['years']; ?>
+          </p>
+        </label>
         <?php // Устанавливаем первый и последний год диапазона:
         $yearArray = range(1920, 2050);
         ?>
         <select name="years" class="select-dropdown">
-          <option value="">Выберите год</option>
+          <option value="<?php echo $option; ?>" 
+          <?php if (strval($option) == $values['years']) {print 'selected';} ?>> Выберите год</option>
           <?php
           //Перебора массива (создаются пункты списка (года с 1920 по 2050)):
           foreach ($yearArray as $year) {
@@ -67,6 +70,9 @@
       <div class="form-field">
         <span>Пол:</span>
         <br>
+        <p <?php if ($errors['gender']) {print 'class="error"';} ?>>
+         <?php if ($messages['gender']) print $messages['gender']; ?> 
+        </p>
         <input type="radio" checked="checked" name="gender" id="user-male" value="М">
         <label for="user-male">Мужской</label>
         <input type="radio" name="gender" id="user-female" value="Ж">

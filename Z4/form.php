@@ -36,24 +36,20 @@
       <div class="form-field">
         <label for="user-name">Имя</label>
         <br />
-        <input type="text" name="username" id="user-name" <?php if ($errors['username']) {
-                                                            print 'class="error"';
-                                                          } ?> value="<?php print $errors['username'] ? $messages['username'] : $values['username']; ?>" />
+        <input type="text" name="username" id="user-name" <?php if ($errors['username']) {print 'class="error"';} ?>
+         value="<?php print $errors['username'] ? $messages['username'] : $values['username']; ?>" />
         <br />
       </div>
       <div class="form-field">
         <label for="user-email">E-mail</label>
         <br />
-        <input type="email" name="user_email" id="user-email" <?php if ($errors['user_email']) {
-                                                                print 'class="error"';
-                                                              } ?> value="<?php print $errors['user_email'] ? $messages['user_email'] : $values['user_email']; ?>" />
+        <input type="email" name="user_email" id="user-email" <?php if ($errors['user_email']) {print 'class="error"';} ?>
+         value="<?php print $errors['user_email'] ? $messages['user_email'] : $values['user_email']; ?>" />
         <br />
       </div>
       <div class="form-field">
         <label>Год рождения
-          <p <?php if ($errors['years']) {
-                print 'class="error"';
-              } ?>>
+          <p <?php if ($errors['years']) {print 'class="error"';} ?>>
             <?php if ($messages['years']) print $messages['years']; ?>
           </p>
         </label>
@@ -61,9 +57,7 @@
         $yearArray = range(1920, 2050);
         ?>
         <select name="years" class="select-dropdown">
-          <option value="<?php echo $option; ?>" <?php if (strval($option) == $values['years']) {
-                                                    print 'selected';
-                                                  } ?>>
+          <option value="<?php echo $option; ?>" <?php if (strval($option) == $values['years']) {print 'selected';} ?>>
             Выберите год
           </option>
           <?php
@@ -77,9 +71,7 @@
       <div class="form-field">
         <span>Пол:</span>
         <br>
-        <p <?php if ($errors['gender']) {
-              print 'class="error"';
-            } ?>>
+        <p <?php if ($errors['gender']) {print 'class="error"';} ?>>
           <?php if ($messages['gender']) print $messages['gender']; ?>
         </p>
         <input type="radio" checked="checked" name="gender" id="user-male" value="М">
@@ -90,10 +82,8 @@
       <div class="form-field">
         <span>Кол-во конечностей:</span>
         <br>
-        <p <?php if ($errors['limbs']) {
-              print 'class="error"';
-            } ?>>
-          <?php if ($messages['limbs']) print $messages['limbs']; ?>
+        <p <?php if ($errors['userl']) {print 'class="error"';} ?>>
+          <?php if ($messages['userl']) print $messages['userl']; ?>
         </p>
         <input type="radio" name="userl" id="user-l-0" value="0" 
         <?php if ($errors['userl']) {print 'class="error"';} 

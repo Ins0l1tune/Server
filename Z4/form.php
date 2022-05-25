@@ -36,20 +36,24 @@
       <div class="form-field">
         <label for="user-name">Имя</label>
         <br />
-        <input type="text" name="username" id="user-name" <?php if ($errors['username']) {print 'class="error"';} ?> 
-        value="<?php print $errors['username'] ? $messages['username'] : $values['username']; ?>" />
+        <input type="text" name="username" id="user-name" <?php if ($errors['username']) {
+                                                            print 'class="error"';
+                                                          } ?> value="<?php print $errors['username'] ? $messages['username'] : $values['username']; ?>" />
         <br />
       </div>
       <div class="form-field">
         <label for="user-email">E-mail</label>
         <br />
-        <input type="email" name="user_email" id="user-email" <?php if ($errors['user_email']) {print 'class="error"';} ?> 
-        value="<?php print $errors['user_email'] ? $messages['user_email'] : $values['user_email']; ?>" />
+        <input type="email" name="user_email" id="user-email" <?php if ($errors['user_email']) {
+                                                                print 'class="error"';
+                                                              } ?> value="<?php print $errors['user_email'] ? $messages['user_email'] : $values['user_email']; ?>" />
         <br />
       </div>
       <div class="form-field">
         <label>Год рождения
-          <p <?php if ($errors['years']) {print 'class="error"';} ?>>
+          <p <?php if ($errors['years']) {
+                print 'class="error"';
+              } ?>>
             <?php if ($messages['years']) print $messages['years']; ?>
           </p>
         </label>
@@ -57,8 +61,11 @@
         $yearArray = range(1920, 2050);
         ?>
         <select name="years" class="select-dropdown">
-          <option value="<?php echo $option; ?>" 
-          <?php if (strval($option) == $values['years']) {print 'selected';} ?>> Выберите год</option>
+          <option value="<?php echo $option; ?>" <?php if (strval($option) == $values['years']) {
+                                                    print 'selected';
+                                                  } ?>>
+            Выберите год
+          </option>
           <?php
           //Перебора массива (создаются пункты списка (года с 1920 по 2050)):
           foreach ($yearArray as $year) {
@@ -70,8 +77,10 @@
       <div class="form-field">
         <span>Пол:</span>
         <br>
-        <p <?php if ($errors['gender']) {print 'class="error"';} ?>>
-         <?php if ($messages['gender']) print $messages['gender']; ?> 
+        <p <?php if ($errors['gender']) {
+              print 'class="error"';
+            } ?>>
+          <?php if ($messages['gender']) print $messages['gender']; ?>
         </p>
         <input type="radio" checked="checked" name="gender" id="user-male" value="М">
         <label for="user-male">Мужской</label>
@@ -81,34 +90,89 @@
       <div class="form-field">
         <span>Кол-во конечностей:</span>
         <br>
-        <input type="radio" name="userl" id="user-l-2" value="2">
+        <p <?php if ($errors['limbs']) {
+              print 'class="error"';
+            } ?>>
+          <?php if ($messages['limbs']) print $messages['limbs']; ?>
+        </p>
+        <input type="radio" name="userl" id="user-l-0" value="0" 
+        <?php if ($errors['userl']) {print 'class="error"';} 
+        else 
+          if ($values['userl'] == 0) {print 'checked';} ?>>
+        <label for="user-l-0">0</label>
+
+        <input type="radio" name="userl" id="user-l-1" value="1" 
+        <?php if ($errors['userl']) {print 'class="error"';} 
+        else 
+          if ($values['userl'] == 1) {print 'checked';} ?>>
+        <label for="user-l-1">1</label>
+
+        <input type="radio" name="userl" id="user-l-2" value="2" 
+        <?php if ($errors['userl']) {print 'class="error"';} 
+        else 
+          if ($values['userl'] == 2) {print 'checked';} ?>>
         <label for="user-l-2">2</label>
-        <input type="radio" name="userl" id="user-l-3" value="3">
+
+        <input type="radio" name="userl" id="user-l-3" value="3" 
+        <?php if ($errors['userl']) {print 'class="error"';} 
+        else
+          if ($values['userl'] == 3) {print 'checked';} ?>>>
         <label for="user-l-3">3</label>
-        <input type="radio" checked="checked" name="userl" id="user-l-4" value="4">
+
+        <input type="radio" checked="checked" name="userl" id="user-l-4" value="4" 
+        <?php if ($errors['userl']) {print 'class="error"';} 
+        else 
+          if ($values['userl'] == 4) {print 'checked';} ?>>>
         <label for="user-l-4">4</label>
+
+        <input type="radio" checked="checked" name="userl" id="user-l-5" value="5" 
+        <?php if ($errors['userl']) {print 'class="error"';} 
+        else 
+          if ($values['userl'] == 5) {print 'checked';} ?>>>
+        <label for="user-l-5">5</label>
       </div>
       <div class="form-field">
+        <span>Сверхспособности</span>
+				<br>
+        <p <?php if ($errors['superpower']) {print 'class="error"';} ?> >
+          <?php if ($messages['superpower']) print $messages['superpower']; ?> 
+        </p>
         <select multiple size="4" name="superpower[]" class="select-list">
-          <option value="Бессмертие">Бессмертие</option>
-          <option value="Прохождение сквозь стены">Прохождение сквозь стены</option>
-          <option value="Левитация">Левитация</option>
-          <option value="Невидимость">Невидимость</option>
-          <option value="Пирокинез">Пирокинез</option>
-          <option value="Нет в списке">Нет в списке</option>
+          <option value="Бессмертие" <?php if (in_array("Бессмертие", $superpower)) {print 'selected';} ?>>
+          Бессмертие</option>
+          <option value="Прохождение сквозь стены" <?php if (in_array("Прохождение сквозь стены", $superpower)) {print 'selected';} ?>>
+          Прохождение сквозь стены</option>
+          <option value="Левитация" <?php if (in_array("Левитация", $superpower)) {print 'selected';} ?>>
+          Левитация</option>
+          <option value="Невидимость" <?php if (in_array("Невидимость", $superpower)) {print 'selected';} ?>>
+          Невидимость</option>
+          <option value="Пирокинез" <?php if (in_array("Пирокинез", $superpower)) {print 'selected';} ?>>
+          Пирокинез</option>
+          <option value="Нет в списке" <?php if (in_array("Нет в списке", $superpower)) {print 'selected';} ?>>
+          Нет в списке</option>
         </select>
       </div>
       <div class="form-field">
         <span>Биография:</span>
         <br>
-        <textarea name="bio" cols="30" rows="10" style="resize: none;"></textarea>
+        <textarea name="bio" cols="30" rows="10" style="resize: none;" <?php if ($errors['bio']) {print 'class="error"';} ?> > 
+          <?php if ($messages['bio']) {print $messages['bio'];} else {print $values['bio'];} ?>
+        </textarea>
       </div>
       <div class="form-field">
-        <input type="checkbox" name="user-policy" id="user-policy">
+        <label class="field-name">
+          <p <?php if ($errors['checkbox']) {print 'class="error"';} ?> > 
+            <?php if ($messages['checkbox']) {print $messages['checkbox'];} ?> 
+          </p>
+        </label>
+        <input type="checkbox" name="usercheck" id="user-policy" <?php if ($errors['usercheck']) {print 'class="error"';} ?> <?php if ($values['usercheck']) {print 'usercheck';} ?> >
         <label for="user-policy">С <a href="#">контрактом</a> ознакомлен</label>
       </div>
       <div class="form-field">
-        <input type="submit" id="user-submit" value="ok">
+        <input type="submit" class="submit" id="user-submit" value="ok" >
+        <p style="color:forestgreen;">
+          <?php if ($messages['data_saved']) {print $messages['data_saved'];} ?>
+        </p> 
       </div>
     </form>
   </div>
@@ -117,16 +181,6 @@
       <span class="title_sub">2021 - НИИ "Прогресс"</span>
     </div>
   </footer>
-</body>
-
-</html>
-
-<form action="" method="POST">
-  <input name="fio" <?php if ($errors['fio']) {
-                      print 'class="error"';
-                    } ?> value="<?php print $values['fio']; ?>" />
-  <input type="submit" value="ok" />
-</form>
 </body>
 
 </html>

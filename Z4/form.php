@@ -151,8 +151,8 @@
       </div>
       <div class="form-field">
         <label class="field-name">
-          <p <?php if ($errors['checkbox']) {print 'class="error"';} ?> > 
-            <?php if ($messages['checkbox']) {print $messages['checkbox'];} ?> 
+          <p <?php if ($errors['usercheck']) {print 'class="error"';} ?> > 
+            <?php if ($messages['usercheck']) {print $messages['usercheck'];} ?> 
           </p>
         </label>
         <input type="checkbox" name="usercheck" id="user-policy" <?php if ($errors['usercheck']) {print 'class="error"';} ?> <?php if ($values['usercheck']) {print 'usercheck';} ?> >

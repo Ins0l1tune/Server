@@ -9,15 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // Массив для временного хранения сообщений пользователю.
   $messages = array();
 
-  // В суперглобальном массиве $_COOKIE PHP хранит все имена и значения куки текущего запроса.
-  // Выдаем сообщение об успешном сохранении.
-  //if (!empty($_COOKIE['save'])) {
-    // Удаляем куку, указывая время устаревания в прошлом.
-   // setcookie('save', '', 100000);
-    // Если есть параметр save, то выводим сообщение пользователю.
-    //$messages[] = 'Спасибо, результаты сохранены.';
-  //}
-
+  // Складываем признак ошибок в массив.
+  $errors = array();
+  $errors['username'] = !empty($_COOKIE['username_err']);
+  $errors['user_email'] = !empty($_COOKIE['user_email_err']);
+  $errors['years'] = !empty($_COOKIE['years_err']);
+  $errors['gender'] = !empty($_COOKIE['gender_err']);
+  $errors['userl'] = !empty($_COOKIE['userl_err']);
+  $errors['superpower'] = !empty($_COOKIE['superpower_err']);
+  $errors['bio'] = !empty($_COOKIE['bio_err']);
+  $errors['usercheck'] = !empty($_COOKIE['usercheck_err']);
+  $errors['data_saved'] = !empty($_COOKIE['data_saved_err']);
   // Складываем признак ошибок в массив.
   $errors = array();
   $errors['fio'] = !empty($_COOKIE['fio_error']);
@@ -43,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   include('form.php');
 }
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
-else {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Проверяем ошибки.
   $errors = FALSE;
   if (empty($_POST['fio'])) {
@@ -56,10 +58,7 @@ else {
     setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
   }
 
-// *************
-// TODO: тут необходимо проверить правильность заполнения всех остальных полей.
-// Сохранить в Cookie признаки ошибок и значения полей.
-// *************
+
 
   if ($errors) {
     // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.

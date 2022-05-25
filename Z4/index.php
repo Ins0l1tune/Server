@@ -81,3 +81,11 @@ else {
   // Делаем перенаправление.
   header('Location: index.php');
 }
+if (!empty($messages)) {
+  print('<div id="messages">');
+  // Выводим все сообщения.
+  foreach ($messages as $message) {
+    print($message);
+  }
+  print('</div>');
+}

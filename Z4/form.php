@@ -48,11 +48,10 @@
         <br />
       </div>
       <div class="form-field">
-        <label>Год рождения
-          <p <?php if ($errors['years']) {print 'class="error"';} ?>>
-            <?php if ($messages['years']) print $messages['years']; ?>
-          </p>
-        </label>
+        <label>Год рождения</label>
+        <p <?php if ($errors['years']) {print 'class="error"';} ?>>
+          <?php if ($messages['years']) print $messages['years']; ?>
+        </p>
         <?php // Устанавливаем первый и последний год диапазона:
         $yearArray = range(1920, 2050);
         ?>

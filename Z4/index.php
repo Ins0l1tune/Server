@@ -235,6 +235,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     setcookie('usercheck_err', '', 100000);
   }
 
+  //Переменные формы:
+  $username = $_POST['username'];
+  $user_email = strtolower($_POST['user_email']);
+  $years = $_POST['years'];
+  $gender = $_POST['gender'];
+  $userl = $_POST['userl'];
+  $superpower = implode(',', $_POST['superpower']);
+  $bio = $_POST['bio'];
   //Параметры для подключения
   $user = 'u47480';
   $pass = '6816416';
@@ -242,23 +250,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   try {
     //Подключение к базе данных. Подготовленный запрос. Именованные метки.
     $db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-    $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username, :user_email, :years, :gender, :userl, :superpower, :bio)");
-    $stmt->execute(['username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'superpower' => $superpower, 'bio' => $bio]);
-    print_r($stmt->errorInfo());
+    $stmt1 = $db->prepare("INSERT INTO userform (username, user_email, years, gender, userl, bio) VALUES (:username, :user_email, :years, :gender, :userl, :bio)");
+    $stmt1->execute(['username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'bio' => $bio]);
+    print_r($stmt1->errorInfo());
+    $stmt2 = $db->prepare("INSERT INTO userpowers (superpower) VALUES (:superpower)");
+    print_r($stmt2->errorInfo());
     $id = $db->lastInsertId();
     echo "Данные успешно сохранены. ID:" . $id;
   } catch (PDOException $e) {
-    //Если есть ошибка соединения, выводим её:
-    print('Error : ' . $e->getMessage());
+    setcookie('save_error', '$e->getMessage()', 100000);
+    header('Location: index.php');
     exit();
   }
+  // Делаем перенаправление.
+  header('Location: index.php?save=1');
 }
 
-if (!empty($messages)) {
-  print('<div id="messages">');
-  // Выводим все сообщения.
-  foreach ($messages as $message) {
-    print($message);
-  }
-  print('</div>');
-}
+//if (!empty($messages)) {
+//  print('<div id="messages">');
+//  // Выводим все сообщения.
+//  foreach ($messages as $message) {
+//    print($message);
+//  }
+//  print('</div>');
+//}

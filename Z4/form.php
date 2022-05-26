@@ -138,7 +138,7 @@
           Невидимость</option>
           <option value="Пирокинез" <?php if (in_array("Пирокинез", $superpower)) {print 'selected';} ?>>
           Пирокинез</option>
-          <option value="Нет в списке" <?php if (in_array("Нет в списке", $superpower)) {print 'selected';} ?>>
+          <option value="Отсутствуют" <?php if (in_array("Отсутствуют", $superpower)) {print 'selected';} ?>>
           Нет в списке</option>
         </select>
       </div>

@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('superpower_err', '', 100000);
     // Выводим сообщение.
-    $messages['superpower'] = 'Нелегальная сверхспособность';
+    $messages['superpower'] = 'Не может быть такого что, у вас способностей нет и... одновременно есть';
   }
 
 
@@ -103,11 +103,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $messages['data_saved'] = "Ошибка отправки: " . $_COOKIE['save_err'];
   }
 
+
   // Выдаем сообщение об успешном сохранении.
   if (array_key_exists('save', $_GET) && $_GET['save']) {
     // Если есть параметр save, то выводим сообщение пользователю.
     $messages['data_saved'] = 'Спасибо, результаты сохранены.';
   }
+
 
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
@@ -127,40 +129,131 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Проверяем ошибки.
+  // Проверяем ошибки в поле ИМЕНИ.
   $errors = FALSE;
-  if (empty($_POST['fio'])) {
-    // Выдаем куку на день с флажком об ошибке в поле fio.
-    setcookie('fio_error', '1', time() + 24 * 60 * 60);
+  if (empty($_POST['username'])) {
+    // Выдаем куку на день с флажком об ошибке в поле name.
+    setcookie('username_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  }
-  else {
+  } else if (!preg_match("/([а-яА-ЯЁёa-zA-Z ]+)$/u", $_POST['name'])) {
+    // Выдаем куку на день с флажком об ошибке в поле name.
+    setcookie('username_err', '2', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
+    setcookie('username_v', $_POST['username'], time() + 30 * 24 * 60 * 60);
   }
 
+  // Проверяем ошибки в поле ПОЧТЫ.
+  if (empty($_POST['user_email'])) {
+    // Выдаем куку на день с флажком об ошибке в поле email.
+    setcookie('user_email_err', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else if (!preg_match("/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i", $_POST['user_email'])) {
+    // Выдаем куку на день с флажком об ошибке в поле email.
+    setcookie('user_email_err', '2', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('user_email_v', $_POST['user_email'], time() + 30 * 24 * 60 * 60);
+  }
+
+  // Проверяем ошибки в поле ГР.
+  if (empty($_POST['years'])) {
+    // Выдаем куку на день с флажком об ошибке в поле bdate.
+    setcookie('years_err', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('years_v', $_POST['years'], time() + 30 * 24 * 60 * 60);
+  }
+
+  // Проверяем ошибки в поле ПОЛ.
+  if (empty($_POST['gender'])) {
+    // Выдаем куку на день с флажком об ошибке в поле gender.
+    setcookie('gender_err', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('gender_v', $_POST['gender'], time() + 30 * 24 * 60 * 60);
+  }
+
+  // Проверяем ошибки в поле КОНЕЧНОСТИ.
+  if (empty($_POST['userl']) && $_POST['userl'] !== '0') {
+    // Выдаем куку на день с флажком об ошибке в поле limbs.
+    setcookie('userl_err', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('userl_v', $_POST['userl'], time() + 30 * 24 * 60 * 60);
+  }
+
+  //Проверяем ошибки в поле СУПЕРСПОСОБНОСТИ
+  if (!empty($_POST['superpower']) && !preg_match("/Бессмертие+Отсутствуют|Прохождение сквозь стены+Отсутствуют|Левитация+Отсутствуют|Невидимость+Отсутствуют|Пирокинез+Отсутствуют/", implode(",", $_POST['superpower']))) {
+    // Выдаем куку на день с флажком об ошибке в поле superpowers.
+    setcookie('superpower_err', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('superpowers_v', json_encode($_POST['superpower']), time() + 30 * 24 * 60 * 60);
+  }
+
+  // Проверяем ошибки в поле БИОГРАФИЯ
+  if (empty($_POST['bio'])) {
+    // Выдаем куку на день с флажком об ошибке в поле bio.
+    setcookie('bio_err', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('bio_v', $_POST['bio'], time() + 30 * 24 * 60 * 60);
+  }
+
+  // Проверяем ошибки CHECKBOX
+  if (empty($_POST['usercheck'])) {
+    // Выдаем куку на день с флажком об ошибке в поле checkbox.
+    setcookie('usercheck_err', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  } else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('usercheck_v', $_POST['usercheck'], time() + 30 * 24 * 60 * 60);
+  }
 
 
   if ($errors) {
     // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
     header('Location: index.php');
     exit();
-  }
-  else {
+  } else {
     // Удаляем Cookies с признаками ошибок.
-    setcookie('fio_error', '', 100000);
-    // TODO: тут необходимо удалить остальные Cookies.
+    setcookie('username_err', '', 100000);
+    setcookie('user_email_err', '', 100000);
+    setcookie('years_err', '', 100000);
+    setcookie('gender_err', '', 100000);
+    setcookie('userl_err', '', 100000);
+    setcookie('superpower_err', '', 100000);
+    setcookie('bio_err', '', 100000);
+    setcookie('usercheck_err', '', 100000);
   }
 
-  // Сохранение в БД.
-  // ...
+  //Параметры для подключения
+  $user = 'u47480';
+  $pass = '6816416';
 
-  // Сохраняем куку с признаком успешного сохранения.
-  setcookie('save', '1');
-
-  // Делаем перенаправление.
-  header('Location: index.php');
+  try {
+    //Подключение к базе данных. Подготовленный запрос. Именованные метки.
+    $db = new PDO('mysql:host=localhost;dbname=u47480', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+    $stmt = $db->prepare("INSERT INTO clientinfo (username, user_email, years, gender, userl, superpower, bio) VALUES (:username, :user_email, :years, :gender, :userl, :superpower, :bio)");
+    $stmt->execute(['username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'superpower' => $superpower, 'bio' => $bio]);
+    print_r($stmt->errorInfo());
+    $id = $db->lastInsertId();
+    echo "Данные успешно сохранены. ID:" . $id;
+  } catch (PDOException $e) {
+    //Если есть ошибка соединения, выводим её:
+    print('Error : ' . $e->getMessage());
+    exit();
+  }
 }
+
 if (!empty($messages)) {
   print('<div id="messages">');
   // Выводим все сообщения.

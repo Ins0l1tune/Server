@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('superpower_err', '', 100000);
     // Выводим сообщение.
-    $messages['superpower'] = 'Не может быть такого что, у вас способностей нет и... одновременно есть';
+    $messages['superpower'] = 'Укажите суперспособность';
   }
 
 
@@ -189,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   //Проверяем ошибки в поле СУПЕРСПОСОБНОСТИ
-  if (!empty($_POST['superpower']) && !preg_match("/Бессмертие+Отсутствуют|Прохождение сквозь стены+Отсутствуют|Левитация+Отсутствуют|Невидимость+Отсутствуют|Пирокинез+Отсутствуют/", implode(",", $_POST['superpower']))) {
+  if (!empty($_POST['superpower'])) {
     // Выдаем куку на день с флажком об ошибке в поле superpowers.
     setcookie('superpower_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;

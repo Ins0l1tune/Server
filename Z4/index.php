@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else if (!preg_match("/([а-яА-ЯЁёa-zA-Z ]+)$/u", $_POST['username'])) {
+  } else if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $_POST['username'])) {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Выдаем куку на день с флажком об ошибке в поле email.
     setcookie('user_email_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else if (!preg_match("/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i", $_POST['user_email'])) {
+  } else if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $_POST['user_email'])) {
     // Выдаем куку на день с флажком об ошибке в поле email.
     setcookie('user_email_err', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('superpowers_v', implode(',', $_POST['superpower']), time() + 30 * 24 * 60 * 60);
+    setcookie('superpower_v', implode(',', $_POST['superpower']), time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки в поле БИОГРАФИЯ

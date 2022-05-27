@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else if (!preg_match("/([а-яА-ЯЁёa-zA-Z ]+)$/u", $_POST['name'])) {
+  } else if (!preg_match("/([а-яА-ЯЁёa-zA-Z ]+)$/u", $_POST['username'])) {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('superpowers_v', json_encode($_POST['superpower']), time() + 30 * 24 * 60 * 60);
+    setcookie('superpowers_v', implode(',', $_POST['superpower']), time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки в поле БИОГРАФИЯ

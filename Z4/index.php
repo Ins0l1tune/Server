@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   if ($errors['gender']) {
     // Удаляем куку, указывая время устаревания в прошлом.
-    setcookie('gender_error', '', 100000);
+    setcookie('gender_err', '', 100000);
     // Выводим сообщение.
     $messages['gender'] = 'Заполните пол';
   }
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['years'] = empty($_COOKIE['years_v']) ? '' : $_COOKIE['years_v'];
   $values['gender'] = empty($_COOKIE['gender_v']) ? '' : $_COOKIE['gender_v'];
   $values['userl'] = empty($_COOKIE['userl_v']) ? '' : $_COOKIE['userl_v'];
-  $superpower = empty($_COOKIE['superpower_v']) ? array() : json_decode($_COOKIE['superpower_v'], true);
+  $superpower = empty($_COOKIE['superpower']) ? array() : implode(',', $_POST['superpower']);
   $values['bio'] = empty($_COOKIE['bio_v']) ? '' : $_COOKIE['bio_v'];
   $values['usercheck'] = empty($_COOKIE['usercheck_v']) ? '' : $_COOKIE['usercheck_v'];
 
@@ -129,83 +129,92 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  //Переменные формы:
+  $username = $_POST['username'];
+  $user_email = strtolower($_POST['user_email']);
+  $years = $_POST['years'];
+  $gender = $_POST['gender'];
+  $userl = $_POST['userl'];
+  $superpower = implode(',', $_POST['superpower']);
+  $bio = $_POST['bio'];
+
   // Проверяем ошибки в поле ИМЕНИ.
   $errors = FALSE;
-  if (empty($_POST['username'])) {
+  if (empty($username)) {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $_POST['username'])) {
+  } else if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $username)) {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('username_v', $_POST['username'], time() + 30 * 24 * 60 * 60);
+    setcookie('username_v', $username, time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки в поле ПОЧТЫ.
-  if (empty($_POST['user_email'])) {
+  if (empty($user_email)) {
     // Выдаем куку на день с флажком об ошибке в поле email.
     setcookie('user_email_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $_POST['user_email'])) {
+  } else if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $user_email)) {
     // Выдаем куку на день с флажком об ошибке в поле email.
     setcookie('user_email_err', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('user_email_v', $_POST['user_email'], time() + 30 * 24 * 60 * 60);
+    setcookie('user_email_v', $user_email, time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки в поле ГР.
-  if (empty($_POST['years'])) {
+  if (empty($years)) {
     // Выдаем куку на день с флажком об ошибке в поле bdate.
     setcookie('years_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('years_v', $_POST['years'], time() + 30 * 24 * 60 * 60);
+    setcookie('years_v', $years, time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки в поле ПОЛ.
-  if (empty($_POST['gender'])) {
+  if (empty($gender)) {
     // Выдаем куку на день с флажком об ошибке в поле gender.
     setcookie('gender_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('gender_v', $_POST['gender'], time() + 30 * 24 * 60 * 60);
+    setcookie('gender_v', $gender, time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки в поле КОНЕЧНОСТИ.
-  if (empty($_POST['userl']) && $_POST['userl'] !== '0') {
+  if (empty($userl)) {
     // Выдаем куку на день с флажком об ошибке в поле limbs.
     setcookie('userl_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('userl_v', $_POST['userl'], time() + 30 * 24 * 60 * 60);
+    setcookie('userl_v', $userl, time() + 30 * 24 * 60 * 60);
   }
 
   //Проверяем ошибки в поле СУПЕРСПОСОБНОСТИ
-  if (!empty($_POST['superpower'])) {
+  if (!empty($superpower)) {
     // Выдаем куку на день с флажком об ошибке в поле superpowers.
     setcookie('superpower_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('superpower_v', implode(',', $_POST['superpower']), time() + 30 * 24 * 60 * 60);
+    setcookie('superpower_v', $superpower, time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки в поле БИОГРАФИЯ
-  if (empty($_POST['bio'])) {
+  if (empty($bio)) {
     // Выдаем куку на день с флажком об ошибке в поле bio.
     setcookie('bio_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('bio_v', $_POST['bio'], time() + 30 * 24 * 60 * 60);
+    setcookie('bio_v', $bio, time() + 30 * 24 * 60 * 60);
   }
 
   // Проверяем ошибки CHECKBOX
@@ -235,14 +244,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     setcookie('usercheck_err', '', 100000);
   }
 
-  //Переменные формы:
-  $username = $_POST['username'];
-  $user_email = strtolower($_POST['user_email']);
-  $years = $_POST['years'];
-  $gender = $_POST['gender'];
-  $userl = $_POST['userl'];
-  $superpower = implode(',', $_POST['superpower']);
-  $bio = $_POST['bio'];
   //Параметры для подключения
   $user = 'u47480';
   $pass = '6816416';

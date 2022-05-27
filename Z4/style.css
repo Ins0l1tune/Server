@@ -102,8 +102,4 @@ footer .title_sub {
 /* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
 .error {
 	border: 2px solid red;	/* Параметры границы */
-	background: var(--color-blue);;/* Цвет фона */
-	padding: 10px;/* Поля вокруг текста */
-	color: var(--color-lightbrown);
-	font-size: 14pt;
 }

@@ -48,7 +48,9 @@
         <br />
       </div>
       <div class="form-field">
-        <<label>Год рождения</label>
+        <label>Год рождения
+          <p <?php if ($errors['years']) {print 'class="error"';} ?> > <?php if ($messages['years']) print $messages['years']; ?> </p>
+        </label>
 				<?php // Устанавливаем первый и последний год диапазона:
 				$yearArray = range(1920, 2050);
 				?>
@@ -59,6 +61,9 @@
 					foreach ($yearArray as $year) {
 						echo '<option ' . $selected . ' value="' . $year . '">' . $year . '</option>';
 					}
+          if (strval($year) == $values['years']) {
+            print 'selected';
+          }
 					?>
         </select>
       </div>

@@ -48,23 +48,18 @@
         <br />
       </div>
       <div class="form-field">
-        <label>Год рождения</label>
-        <p <?php if ($errors['years']) {print 'class="error"';} ?>>
-          <?php if ($messages['years']) print $messages['years']; ?>
-        </p>
-        <?php // Устанавливаем первый и последний год диапазона:
-        $yearArray = range(1920, 2050);
-        ?>
-        <select name="years" class="select-dropdown">
-          <option value="<?php echo $option; ?>" <?php if (strval($option) == $values['years']) {print 'selected';} ?>>
-            Выберите год
-          </option>
-          <?php
-          //Перебора массива (создаются пункты списка (года с 1920 по 2050)):
-          foreach ($yearArray as $year) {
-            echo '<option ' . $selected . ' value="' . $year . '">' . $year . '</option>';
-          }
-          ?>
+        <<label>Год рождения</label>
+				<?php // Устанавливаем первый и последний год диапазона:
+				$yearArray = range(1920, 2050);
+				?>
+				<select name="years" class="select-dropdown">
+					<option value="">Выберите год</option>
+					<?php
+					//Перебора массива (создаются пункты списка (года с 1920 по 2050)):
+					foreach ($yearArray as $year) {
+						echo '<option ' . $selected . ' value="' . $year . '">' . $year . '</option>';
+					}
+					?>
         </select>
       </div>
       <div class="form-field">
@@ -105,19 +100,19 @@
         <input type="radio" name="userl" id="user-l-3" value="3" 
         <?php if ($errors['userl']) {print 'class="error"';} 
         else
-          if ($values['userl'] == 3) {print 'checked';} ?>>>
+          if ($values['userl'] == 3) {print 'checked';} ?>>
         <label for="user-l-3">3</label>
 
         <input type="radio" checked="checked" name="userl" id="user-l-4" value="4" 
         <?php if ($errors['userl']) {print 'class="error"';} 
         else 
-          if ($values['userl'] == 4) {print 'checked';} ?>>>
+          if ($values['userl'] == 4) {print 'checked';} ?>>
         <label for="user-l-4">4</label>
 
         <input type="radio" checked="checked" name="userl" id="user-l-5" value="5" 
         <?php if ($errors['userl']) {print 'class="error"';} 
         else 
-          if ($values['userl'] == 5) {print 'checked';} ?>>>
+          if ($values['userl'] == 5) {print 'checked';} ?>>
         <label for="user-l-5">5</label>
       </div>
       <div class="form-field">

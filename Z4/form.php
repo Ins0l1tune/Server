@@ -84,17 +84,6 @@
         <p <?php if ($errors['userl']) {print 'class="error"';} ?>>
           <?php if ($messages['userl']) print $messages['userl']; ?>
         </p>
-        <input type="radio" name="userl" id="user-l-0" value="0" 
-        <?php if ($errors['userl']) {print 'class="error"';} 
-        else 
-          if ($values['userl'] == 0) {print 'checked';} ?>>
-        <label for="user-l-0">0</label>
-
-        <input type="radio" name="userl" id="user-l-1" value="1" 
-        <?php if ($errors['userl']) {print 'class="error"';} 
-        else 
-          if ($values['userl'] == 1) {print 'checked';} ?>>
-        <label for="user-l-1">1</label>
 
         <input type="radio" name="userl" id="user-l-2" value="2" 
         <?php if ($errors['userl']) {print 'class="error"';} 
@@ -114,11 +103,6 @@
           if ($values['userl'] == 4) {print 'checked';} ?>>
         <label for="user-l-4">4</label>
 
-        <input type="radio" checked="checked" name="userl" id="user-l-5" value="5" 
-        <?php if ($errors['userl']) {print 'class="error"';} 
-        else 
-          if ($values['userl'] == 5) {print 'checked';} ?>>
-        <label for="user-l-5">5</label>
       </div>
       <div class="form-field">
         <span>Сверхспособности</span>

@@ -265,12 +265,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Делаем перенаправление.
   header('Location: index.php?save=1');
 }
-
-//if (!empty($messages)) {
-//  print('<div id="messages">');
-//  // Выводим все сообщения.
-//  foreach ($messages as $message) {
-//    print($message);
-//  }
-//  print('</div>');
-//}

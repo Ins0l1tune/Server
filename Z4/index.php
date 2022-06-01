@@ -255,6 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt1->execute(['username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'bio' => $bio]);
     print_r($stmt1->errorInfo());
     $stmt2 = $db->prepare("INSERT INTO userpowers (superpower) VALUES (:superpower)");
+    $stmt1->execute(['superpower' => $superpower]);
     print_r($stmt2->errorInfo());
     $id = $db->lastInsertId();
     echo "Данные успешно сохранены. ID:" . $id;

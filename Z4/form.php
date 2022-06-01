@@ -36,15 +36,15 @@
       <div class="form-field">
         <label for="user-name">Имя</label>
         <br />
-        <input type="text" name="username" id="user-name" <?php if ($errors['username']) {print 'class="error"';} ?>
-         value="<?php print $errors['username'] ? $messages['username'] : $values['username']; ?>" />
+        <p <?php if ($errors['username']) {print 'class="error"';} ?> > <?php if ($messages['username']) print $messages['username']; ?> </p>
+        <input type="text" name="username" id="user-name" value="">
         <br />
       </div>
       <div class="form-field">
         <label for="user-email">E-mail</label>
         <br />
-        <input type="email" name="user_email" id="user-email" <?php if ($errors['user_email']) {print 'class="error"';} ?>
-         value="<?php print $errors['user_email'] ? $messages['user_email'] : $values['user_email']; ?>" />
+        <p <?php if ($errors['user_email']) {print 'class="error"';} ?> > <?php if ($messages['user_email']) print $messages['user_email']; ?> </p>
+        <input type="email" name="user_email" id="user-email" value="">
         <br />
       </div>
       <div class="form-field">

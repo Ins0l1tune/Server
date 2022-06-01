@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   //Проверяем ошибки в поле СУПЕРСПОСОБНОСТИ
-  if (!empty($superpower)) {
+  if (empty($superpower)) {
     // Выдаем куку на день с флажком об ошибке в поле superpowers.
     setcookie('superpower_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;

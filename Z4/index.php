@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('username_err', '', 100000);
     // Выводим сообщение.
     $messages['username'] = 'Укажите своё имя!';
-  } else if ($errors['username'] == 2) {
+  } else if ($errors['username'] == '1') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('username_err', '', 100000);
     // Выводим сообщение.
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = TRUE;
   } else if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $username)) {
     // Выдаем куку на день с флажком об ошибке в поле name.
-    setcookie('username_err', 2, time() + 24 * 60 * 60);
+    setcookie('username_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
     // Сохраняем ранее введенное в форму значение на месяц.

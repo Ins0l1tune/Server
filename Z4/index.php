@@ -140,11 +140,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Проверяем ошибки в поле ИМЕНИ.
   $errors = FALSE;
-  if (empty($username)) {
+  if (empty($_POST['username'])) {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $username)) {
+  } else if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $_POST['username'])) {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -154,11 +154,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   // Проверяем ошибки в поле ПОЧТЫ.
-  if (empty($user_email)) {
+  if (empty($_POST['username'])) {
     // Выдаем куку на день с флажком об ошибке в поле email.
     setcookie('user_email_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $user_email)) {
+  } else if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $_POST['username'])) {
     // Выдаем куку на день с флажком об ошибке в поле email.
     setcookie('user_email_err', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -255,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt1->execute(['username' => $username, 'user_email' => $user_email, 'years' => $years, 'gender' => $gender, 'userl' => $userl, 'bio' => $bio]);
     print_r($stmt1->errorInfo());
     $stmt2 = $db->prepare("INSERT INTO userpowers (superpower) VALUES (:superpower)");
-    $stmt1->execute(['superpower' => $superpower]);
+    $stmt2->execute(['superpower' => $superpower]);
     print_r($stmt2->errorInfo());
     $id = $db->lastInsertId();
     echo "Данные успешно сохранены. ID:" . $id;

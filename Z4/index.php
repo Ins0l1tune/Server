@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('gender_err', '', 100000);
     // Выводим сообщение.
-    $messages['gender'] = 'Заполните пол';
+    $messages['gender'] = 'Укажите пол';
   }
 
   if ($errors['userl']) {

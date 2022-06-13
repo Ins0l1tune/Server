@@ -105,7 +105,7 @@
 
       </div>
       <div class="form-field">
-        <span>Сверхспособности</span>
+        <span>Сверхспособности:</span>
 				<br>
         <p <?php if ($errors['superpower']) {print 'class="error"';} ?> >
           <?php if ($messages['superpower']) print $messages['superpower']; ?> 

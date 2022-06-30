@@ -140,30 +140,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Проверяем ошибки в поле ИМЕНИ.
   $errors = FALSE;
-  if (!preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $_POST['username'])) {
-    // Выдаем куку на день с флажком об ошибке в поле name.
-    setcookie('username_err', '2', time() + 24 * 60 * 60);
-    $errors = TRUE;
+  if (preg_match('/([а-яА-ЯЁёa-zA-Z ]+)$/u', $_POST['username'])) {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('username_v', $username, time() + 30 * 24 * 60 * 60);
   } else { if (empty($_POST['username'])) {
     // Выдаем куку на день с флажком об ошибке в поле name.
     setcookie('username_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
-  } else { 
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('username_v', $username, time() + 30 * 24 * 60 * 60);
+  } else {
+    // Выдаем куку на день с флажком об ошибке в поле name.
+    setcookie('username_err', '2', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }}
 
-  if (!preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $_POST['user_email'])) {
-    // Выдаем куку на день с флажком об ошибке в поле email.
-    setcookie('user_email_err', '2', time() + 24 * 60 * 60);
-    $errors = TRUE;
+  if (preg_match('/[\w]+@[a-zA-Z]+\.[a-zA-Z]+/i', $_POST['user_email'])) {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('user_email_v', $user_email, time() + 30 * 24 * 60 * 60);
   } else { if (empty($_POST['user_email'])) {
     // Выдаем куку на день с флажком об ошибке в поле email.
     setcookie('user_email_err', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   } else {
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('user_email_v', $user_email, time() + 30 * 24 * 60 * 60);
+    // Выдаем куку на день с флажком об ошибке в поле email.
+    setcookie('user_email_err', '2', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }}
 
   // Проверяем ошибки в поле ГР.

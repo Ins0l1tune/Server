@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   include('form.php');
 }
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+else { //if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //Переменные формы:
   $username = $_POST['username'];
   $user_email = strtolower($_POST['user_email']);

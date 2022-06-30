@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('username_err', '', 100000);
     // Выводим сообщение.
-    $messages['username'] = 'Укажите своё имя!';
+    $messages['username'] = 'Разрешены только буквенные символы (тем более, поле не может быть пустым). Укажите своё имя снова!';
   } else if ($errors['username'] == '2') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('username_err', '', 100000);
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('user_email_err', '', 100000);
     // Выводим сообщение.
-    $messages['user_email'] = 'Email обязателен!';
+    $messages['user_email'] = 'Неверный формат электронной почты (тем более, поле не может быть пустым). Укажите свой Email снова!';
   } else if ($errors['user_email'] == '2') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('user_email_err', '', 100000);
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   include('form.php');
 }
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
-else { //if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //Переменные формы:
   $username = $_POST['username'];
   $user_email = strtolower($_POST['user_email']);

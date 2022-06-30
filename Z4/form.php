@@ -37,14 +37,14 @@
         <label for="user-name">Имя</label>
         <br />
         <p <?php if ($errors['username']) {print 'class="error"';} ?> > <?php if ($messages['username']) print $messages['username']; ?> </p>
-        <input type="text" name="username" <?php if ($errors['username']) {print 'class="error"';} ?> value="<?php print $values['username']; ?>">
+        <input type="text" name="username" value="<?php print $values['username']; ?>">
         <br />
       </div>
       <div class="form-field">
         <label for="user-email">E-mail</label>
         <br />
         <p <?php if ($errors['user_email']) {print 'class="error"';} ?> > <?php if ($messages['user_email']) print $messages['user_email']; ?> </p>
-        <input type="text" name="user_email" <?php if ($errors['user_email']) {print 'class="error"';} ?> value="<?php print $values['user_email']; ?>" >
+        <input type="text" name="user_email" value="<?php print $values['user_email']; ?>" >
         <br />
       </div>
       <div class="form-field">
